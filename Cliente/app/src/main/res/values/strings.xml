@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Examen3Nativas</string>
+    <string name="menu_de_controles">Menu de controles</string>
+    <string name="incognito">Incógnito</string>
+    <string name="ir">Ir</string>
+    <string name="recargar">Recargar</string>
+    <string name="adelante">Adelante</string>
+    <string name="atras">Atrás</string>
+    <string name="escribe_la_url">Escribe la URL...</string>
+    <string name="ahorro_de_datos">Ahorro de datos</string>
+    <string name="seleccionar_dispositivo_bluetooth">Seleccionar dispositivo Bluetooth</string>
+</resources>
