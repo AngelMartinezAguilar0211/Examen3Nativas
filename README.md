@@ -43,8 +43,6 @@ Archivos clave:
 |--------|-------------|
 | 🔵 Comunicación Bluetooth | Cliente y servidor se comunican usando Sockets Bluetooth |
 | 🌍 Navegación Web | El cliente puede acceder a contenido web a través del servidor |
-| 🧠 Historial | Guarda sitios visitados (excepto en modo incógnito) |
-| 👤 Modo incógnito | Navegación sin historial |
 | 📉 Ahorro de datos | Elimina imágenes del contenido HTML |
 | 🔘 UI adaptable | Controles como "Ir", "Atrás", "Siguiente" pueden ocultarse |
 
