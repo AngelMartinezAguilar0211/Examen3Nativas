@@ -21,6 +21,7 @@ class BluetoothServerService : Service() {
     @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     override fun onCreate() {
         super.onCreate()
+        NotificationHelper.createChannel(this)
         startForegroundService()
         Thread { listenForConnections() }.start()
     }
@@ -62,10 +63,26 @@ class BluetoothServerService : Service() {
                 }
 
                 socket?.also { client ->
-                    val handler = HttpProxyHandler()
-                    handler.handleClient(client)
-                    client.close()
+                    NotificationHelper.showNotification(
+                        this,
+                        "Cliente conectado",
+                        "Se estableció conexión con un cliente"
+                    )
+
+                    try {
+                        val handler = HttpProxyHandler()
+                        handler.handleClient(client)
+                    } catch (e: Exception) {
+                        NotificationHelper.showNotification(
+                            this,
+                            "Error en conexión",
+                            "Se perdió la conexión con el cliente"
+                        )
+                    } finally {
+                        client.close()
+                    }
                 }
+
             }
         }
     }

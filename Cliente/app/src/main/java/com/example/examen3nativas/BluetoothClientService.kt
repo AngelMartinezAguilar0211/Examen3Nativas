@@ -25,8 +25,17 @@ class BluetoothClientService(private val context: Context) {
 
         Thread {
             try {
+                // Crear canal de notificaciones
+                NotificationHelper.createChannel(context)
+
                 val socket = device.createRfcommSocketToServiceRecord(uuid)
                 socket.connect()
+
+                NotificationHelper.showNotification(
+                    context,
+                    "Conectado al servidor",
+                    "Conexión Bluetooth establecida con éxito"
+                )
 
                 val writer = PrintWriter(BufferedWriter(OutputStreamWriter(socket.outputStream)), true)
                 val reader = DataInputStream(socket.inputStream)
@@ -44,9 +53,18 @@ class BluetoothClientService(private val context: Context) {
 
                 socket.close()
             } catch (e: Exception) {
+                NotificationHelper.createChannel(context)
+
+                NotificationHelper.showNotification(
+                    context,
+                    "Error de conexión",
+                    "No se pudo establecer conexión: ${e.message}"
+                )
+
                 Log.e("BluetoothClient", "Error: ${e.message}")
                 callback("Error de conexión: ${e.message}")
             }
         }.start()
+
     }
 }
