@@ -15,20 +15,20 @@ import androidx.core.content.ContextCompat
 class MainActivity : AppCompatActivity() {
 
     private val REQUEST_PERMISSIONS = 200
-    @RequiresApi(Build.VERSION_CODES.S)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private val btPermissions = arrayOf(
         Manifest.permission.BLUETOOTH_CONNECT,
         Manifest.permission.BLUETOOTH_ADVERTISE,
-        Manifest.permission.BLUETOOTH_SCAN
+        Manifest.permission.BLUETOOTH_SCAN,
+        Manifest.permission.POST_NOTIFICATIONS
     )
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
-            !hasPermissions(btPermissions)) {
+        if (!hasPermissions(btPermissions)) {
             ActivityCompat.requestPermissions(this, btPermissions, REQUEST_PERMISSIONS)
         } else {
             startBluetoothService()
